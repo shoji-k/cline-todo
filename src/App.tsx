@@ -61,7 +61,7 @@ function App() {
                   },
                   {
                     role: "user",
-                    content: "Suggest one creative todo item."
+                    content: "Suggest one creative todo sentence in Japanese."
                   }
                 ],
                 model: "gpt-3.5-turbo",
