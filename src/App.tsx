@@ -27,6 +27,10 @@ function App() {
     ));
   };
 
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
     <div className="app">
       <h1>Todo App</h1>
@@ -49,6 +53,12 @@ function App() {
               onChange={() => toggleTodo(todo.id)}
             />
             <span>{todo.text}</span>
+            <button 
+              className="delete-btn"
+              onClick={() => deleteTodo(todo.id)}
+            >
+              ×
+            </button>
           </li>
         ))}
       </ul>
