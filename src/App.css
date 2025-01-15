@@ -31,8 +31,26 @@ h1 {
   cursor: pointer;
 }
 
+.add-todo button {
+  padding: 8px 16px;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 .add-todo button:hover {
   background-color: #535bf2;
+}
+
+.ai-btn {
+  background-color: #10a37f !important;
+}
+
+.ai-btn:hover {
+  background-color: #0d8266 !important;
 }
 
 .todo-list {

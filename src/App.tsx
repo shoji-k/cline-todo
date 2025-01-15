@@ -1,5 +1,11 @@
 import { useState } from 'react'
+import OpenAI from 'openai'
 import './App.css'
+
+const openai = new OpenAI({
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true
+});
 
 interface Todo {
   id: number;
@@ -43,6 +49,36 @@ function App() {
           placeholder="Add new todo..."
         />
         <button onClick={addTodo}>Add</button>
+        <button 
+          className="ai-btn"
+          onClick={async () => {
+            try {
+              const completion = await openai.chat.completions.create({
+                messages: [
+                  {
+                    role: "system",
+                    content: "You are a helpful assistant that suggests creative todo items."
+                  },
+                  {
+                    role: "user",
+                    content: "Suggest one creative todo item."
+                  }
+                ],
+                model: "gpt-3.5-turbo",
+              });
+              
+              const suggestedTodo = completion.choices[0].message.content;
+              if (suggestedTodo) {
+                setNewTodo(suggestedTodo);
+              }
+            } catch (error) {
+              console.error('Error generating todo:', error);
+              alert('Failed to generate todo. Please check your API key.');
+            }
+          }}
+        >
+          AI
+        </button>
       </div>
       <ul className="todo-list">
         {todos.map(todo => (
